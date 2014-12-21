@@ -1,0 +1,26 @@
+<?php
+$smss = new Smss();
+$excitlist = $smss->items('id,sms_id,content,share')->lists(array(),array('id'=>'desc'),0,8);
+?>
+
+        	<div class="m_1"  style="border-bottom:2px #f60 solid;">
+	          	<h1><a href="#">沃好运-精彩短信</a><span><a href="<?php _run('down/excitlists')?>">更多</a></span></h1>
+	          	<table class="table_1">
+	            	<tr>
+	               		<td class="td_1 ft10">短信内容</td>
+	               		<td class="td_2 ft10">人气下载</td>
+	               		<td class="td_3 ft10">下载</td>
+	               		<td class="td_3 ft10">转发</td>
+	             	</tr>
+	             	<?php if(!$excitlist){ ?>
+		         	<tr><td>暂无短信</td></tr>
+		         	<?php }else{ foreach ($excitlist as $v){ ?>
+		         	<tr>
+	               		<td class="td_4"><a href="<?php _run('down/dxdx')?>?dxid=<?php echo $v['id'];?>"><?php echo strRealLen($v['content'],15);?></a></td>
+	               		<td class="td_5"><?php echo $v['share']?></td>
+	               		<td class="td_6"><a href="<?php _run('down/dxdo')?>"><img src="<?php echo PUBLIC_ROOT ?>img/down.jpg" /></a></td>
+	               		<td class="td_6"><a href="sms:?body=<?php echo $v['content'] ?>"><img src="<?php echo PUBLIC_ROOT ?>img/down.jpg" /></a></td>
+		             </tr>
+			     	<?php } } ?>
+	          	</table>
+       		</div>

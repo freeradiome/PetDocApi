@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.4;  minimum-scale=1.0; maximum-scale=2.0"/>
+<meta name="MobileOptimized" content="240" />
+
+<title>首页</title>
+
+<link href="<?php echo PUBLIC_ROOT?>css/style.css" rel="stylesheet" />
+
+</head>
+
+<body>	
+	<div id="wrap">
+
+    	<div id="banner"><?php Tpl::render('include/advertisement');?></div>
+
+    	<?php Tpl::render('include/userguide');?>
+     	<div class="clear"></div>
+		<?php Tpl::render('include/guide');?>
+     	<div id="main">
+     	<?php foreach ($cat_in_home_lists as $v){?>
+        	<div class="m_1">
+	          	<h1><a href="#"><?php echo $v['name'] ?></a><span><a href="<?php _run('business/more',array('id'=>$v['id']))?>">更多</a></span></h1>
+	          	<ul class="ul_2">
+	          		<?php if($v['lists']) {
+	          		foreach ($v['lists'] as $va){
+	          		?>
+	            	<li><a href="<?php _run('article/content',array('aid'=>$va['id'],'cid'=>$v['id']))?>"><?php echo $va['name']?></a></li>
+	          		<?php
+	          			}
+	          		}else{ ?>
+	          		<li><?php echo $GLOBALS['text']['nodata']?></li>
+	          		<?php } ?>
+	          	</ul>
+       		</div>
+			<?php } ?>
+      		<div style="border-bottom:2px #f60 solid;" class="m_1">
+      			<h1><a href="#">互动活动</a><span><a href="#">更多</a></span></h1>
+        		<ul class="ul_5">
+	        		<li style="text-indent:0;">互动砸蛋活动介绍</li>
+	            	<li>用户使用积分进行砸蛋赢大奖，主要你的积分够，您畅快的砸吧，只要您的运气好，您奖品尽情的拿吧。</li>
+	            	<li>精彩好运送大礼，幸运互动砸大奖</li>
+	          	</ul>
+       		</div>
+       		<div class="m_1" style="height:94px;">
+         		<dl class="dl_1">
+            		<dd><img src="<?php echo PUBLIC_ROOT ?>img/glod.jpg" /></dd>
+            		<dt>使用积分：3分</dt>
+            		<dt><a href="<?php _run('drawegg/egg',array('egg'=>'1'))?>" style="background:#f60;padding:2px 4px;color:#fff;">砸金蛋</a></dt>
+         		</dl>
+         		<dl class="dl_1">
+           			<dd><img src="<?php echo PUBLIC_ROOT ?>img/sliver.jpg" /></dd>
+            		<dt>使用积分：2分</dt>
+             		<dt><a href="<?php _run('drawegg/egg',array('egg'=>'2'))?>" style="background:#f60;padding:2px 4px;color:#fff;">砸银蛋</a></dt>
+         		</dl>
+         		<dl class="dl_1">
+            		<dd><img src="<?php echo PUBLIC_ROOT ?>img/iron.jpg" /></dd>
+            		<dt>使用积分：1分</dt>
+             		<dt><a href="<?php _run('drawegg/egg',array('egg'=>'3'))?>" style="background:#f60;padding:2px 4px;color:#fff;">砸铜蛋</a></dt>
+         		</dl>
+       		</div>
+       		<div class="clear"></div>
+			<div class="m_1" style="border-bottom:2px #f60 solid;">
+	        	<h1><a href="#">精彩推荐</a></h1>
+	          	<ul class="ul_2">
+	           	<?php 
+	           	if(!$recommand_in_home_lists){
+	        	?>
+	        		<li><?php echo $GLOBALS['text']['nodata']?></li>
+	           	<?php 
+	           	}else{
+	           	foreach ($recommand_in_home_lists as $v){?>
+	            	<li><a href="<?php _run('article/content',array('aid'=>$v['id'],'cid'=>$v['cid']))?>"><?php echo $v['name']?></a></li>
+	         	<?php }
+	           	} ?>
+	        	</ul>
+	    	</div>
+	       	<?php Tpl::render('include/intro');?>
+		   	<?php Tpl::render('include/popularsms');?>
+	    </div>
+	 		<?php Tpl::render('include/bottom');?>
+	</div>
+</body>
+
+</html>

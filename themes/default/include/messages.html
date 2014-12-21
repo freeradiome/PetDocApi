@@ -1,0 +1,17 @@
+<?php
+$messages = new Messages();
+$count = $messages->count();
+?>
+
+<div class="m_1" style="border-bottom:2px #f60 solid;">
+	<h1><a href="<?php _run('message/lists') ?>">用户留言</a><span><a href="<?php _run('message/lists') ?>">更多</a></span></h1>
+    <form action="<?php _run('message/add') ?>" method="POST">
+    	<ul class="ul_6">   
+        	<li><textarea style="width:96%;font-size:12px;padding:2%;" name="message" onfocus="this.value=''">请在此留言...</textarea></li>
+            <li>
+            	<a href="<?php _run('message/lists') ?>" style="color:#333;">查看全部留言&nbsp;(<?php echo $count;?>条)</a>
+            	<input type="submit" value="提交" style="border-radius:3px;background:#f60; color:#fff;padding:2px 4px;float:right;margin-right:5px;">
+        	</li>
+    	</ul>
+	</form>
+</div>

@@ -1,0 +1,22 @@
+
+<ul class="ul_ul">
+<?php 
+$cookie =Cookie::getInstance();
+
+if(!$cookie->get('ticket')){
+?>
+<li></li>
+<li><a href="<?php _run('user/login')?>">用户登录</a></li>
+<li><a href="<?php _run('user/reg')?>">免费注册</a></li>
+       
+<?php }else{
+	?>
+
+	 <li style="width:45%;border:none;">您好,<?php echo $GLOBALS['mobile'];?></li>
+
+	 <li style="width:40%;border:none;"><a href="<?php _run('user/selfs')?>">个人中心(<?php echo $GLOBALS['noticeCount'] ; ?>)</a></li>
+
+	 <li style="width:15%;border:none;"><a href="<?php _run('user/quit')?>">退出</a></li>
+<?php }	?>
+
+        </ul>

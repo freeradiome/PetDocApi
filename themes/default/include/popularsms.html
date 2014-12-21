@@ -1,0 +1,25 @@
+<?php
+$smss = new Smss();
+$popularlist = $smss->items('id,sms_id,content,share')->lists(array(),array('share'=>'desc'),0,8);
+?>
+			<div class="m_1">
+        		<h1><a href="#">人气短信推荐</a><span><a href="<?php _run('down/populists')?>">更多</a></span></h1>
+          		<table class="table_1" cellspacing="0">
+	            	<tr>
+	               		<td class="td_1 ft10">短信内容</td>
+	               		<td class="td_2 ft10">人气下载</td>
+	               		<td class="td_3 ft10">下载</td>
+	               		<td class="td_3 ft10">转发</td>
+	             	</tr>
+            		<?php if(!$popularlist){ ?>
+	         		<tr><td>暂无短信</td></tr>
+	         		<?php }else{ foreach ($popularlist as $v){ ?>
+		         	<tr>
+	               		<td class="td_4"><a href="<?php _run('down/dxdx')?>?dxid=<?php echo $v['id'];?>"><?php echo strRealLen($v['content'],15);?></a></td>
+	               		<td class="td_5"><?php echo $v['share']?></td>
+	               		<td class="td_6"><a href="<?php _run('down/dxdo')?>"><img src="<?php echo PUBLIC_ROOT ?>img/down.jpg" /></a></td>
+	               		<td class="td_6"><a href="sms:?body=<?php echo $v['content'] ?>"><img src="<?php echo PUBLIC_ROOT ?>img/down.jpg" /></a></td>
+	             	</tr>
+		     		<?php } } ?>
+          		</table>
+       		</div>

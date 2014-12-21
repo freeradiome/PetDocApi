@@ -1,0 +1,20 @@
+ <?php 
+
+      if( $relation_cat ){?>
+       <div class="m_1" style="border-bottom:2px #f60 solid;">
+          <h1><a href="#"><?php echo $relation_cat['name'] ?></a><span><a href="<?php _run('business/more',array('id'=>$relation_cat['cid']))?>">更多</a></span></h1>
+        <div class="clear"></div>
+          <ul class="ul_2">
+          <?php if(  $relation_cat['lists'] ) {
+          	foreach ( $relation_cat['lists'] as $v){
+          	?>
+            <li><a href="<?php _run('article/content',array('aid'=>$v['id'],'cid'=>$v['cid']))?>"><?php echo $v['name']?></a></li>
+            
+           <?php }
+          }else{ ?>
+          		<li><?php echo $GLOBALS['text']['nodata']?></li>
+           <?php  }?>
+          </ul>
+       </div>
+       <?php 
+          	 } ?>
